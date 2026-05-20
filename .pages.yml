@@ -1,0 +1,11 @@
+# Конфигурация проекта для Pages CMS.
+# Если используется GitHub Pages, публикация берется из корня репозитория.
+site:
+  name: Audiomania Install
+  title: Инсталляционный отдел Аудиомании
+  description: Профессиональный лендинг на HTML/CSS/JS
+build:
+  publish: .
+  command: echo "No build needed"
+content:
+  dir: content_old
