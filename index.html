@@ -5,13 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Инсталляционный отдел Аудиомании</title>
   <meta name="description" content="Профессиональный инсталляционный отдел Аудиомании: звук, видеосистемы, умный дом и комплексное обслуживание." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="header" id="top">
     <div class="container header__inner">
-      <a class="logo" href="#top">Audiomania Install</a>
-      <button class="nav-toggle" aria-label="Открыть меню" id="navToggle">Меню</button>
+      <a class="logo" href="#top">
+        <span class="logo__brand">Audiomania</span> Install
+      </a>
+      <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" id="navToggle">Меню</button>
       <nav class="nav" id="nav">
         <a href="#services">Услуги</a>
         <a href="#process">Как работаем</a>
@@ -23,19 +28,20 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="hero">
       <div class="container hero__inner">
-        <div class="hero__content">
+        <div class="hero__content" data-animate>
           <span class="eyebrow" id="heroEyebrow">Инсталляционные решения</span>
-          <h1 id="heroTitle">Искусство аудио- и видеорешений</h1>
+          <h1 id="heroTitle">Искусство <span class="accent">аудио- и видеорешений</span></h1>
           <p id="heroDescription">Полный цикл: от обсуждения концепции до ввода в эксплуатацию и последующей поддержки. Нашему опыту доверяют не только частные клиенты, но и ведущие компании, архитектурные бюро, отели и девелоперы.</p>
           <div class="hero__actions">
             <a class="btn btn--primary" id="heroPrimaryCta" href="#contact">Заказать консультацию</a>
             <a class="btn btn--secondary" id="heroSecondaryCta" href="#services">Узнать услуги</a>
           </div>
         </div>
-        <div class="hero__visual">
-          <img src="images/hero-cover.jpg" alt="Инсталляционный отдел Аудиомании" class="hero__image" id="heroImage" />
+        <div class="hero__visual" data-animate data-animate-delay="2">
+          <img src="images/hero-cover.jpg" alt="Инсталляционный отдел Аудиомании" class="hero__image" id="heroImage" width="640" height="500" loading="eager" />
           <div class="hero__card">
             <p id="statsLabel">Опыт и надежность</p>
             <strong id="statsValue">1200+ выполненных проектов</strong>
@@ -44,94 +50,78 @@
       </div>
     </section>
 
+    <!-- Services -->
     <section class="section" id="services">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head" data-animate>
           <span class="section__eyebrow">Услуги</span>
           <h2>Что мы делаем</h2>
         </div>
-        <div class="grid grid--3" id="servicesGrid"></div>
+        <div class="grid grid--3" id="servicesGrid" data-animate data-animate-delay="2"></div>
       </div>
     </section>
 
-    <section class="section section--light" id="projects">
+    <!-- Gallery -->
+    <section class="section section--alt" id="projects">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head" data-animate>
           <span class="section__eyebrow">Галерея</span>
           <h2>Наши работы</h2>
         </div>
-        <div class="gallery" id="galleryGrid"></div>
+        <div class="gallery" id="galleryGrid" data-animate data-animate-delay="2"></div>
       </div>
     </section>
 
-    <section class="section section--light" id="process">
+    <!-- Process -->
+    <section class="section" id="process">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head" data-animate>
           <span class="section__eyebrow">Процесс</span>
           <h2>Как мы работаем</h2>
         </div>
-        <div class="timeline" id="processTimeline"></div>
+        <div class="timeline" id="processTimeline" data-animate data-animate-delay="2"></div>
       </div>
     </section>
 
-    <section class="section" id="advantages">
+    <!-- Advantages -->
+    <section class="section section--alt" id="advantages">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head" data-animate>
           <span class="section__eyebrow">Преимущества</span>
           <h2>Почему выбирают нас</h2>
         </div>
-        <div class="grid grid--2" id="advantagesGrid"></div>
+        <div class="grid grid--2" id="advantagesGrid" data-animate data-animate-delay="2"></div>
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="section section--cta">
-      <div class="container cta">
-        <div>
-          <span class="section__eyebrow">Готовы обсудить проект?</span>
-          <h2 id="ctaTitle">Оставьте заявку, и наш менеджер свяжется с вами в течение рабочего дня</h2>
+      <div class="container">
+        <div class="cta" data-animate>
+          <div>
+            <span class="section__eyebrow">Готовы обсудить проект?</span>
+            <h2 id="ctaTitle">Оставьте заявку, и наш менеджер свяжется с вами в течение рабочего дня</h2>
+          </div>
+          <a class="btn btn--white" id="ctaButton" href="#contact">Оставить заявку</a>
         </div>
-        <a class="btn btn--primary" id="ctaButton" href="#contact">Оставить заявку</a>
       </div>
     </section>
 
-    <section class="section section--light" id="team">
+    <!-- Team -->
+    <section class="section" id="team">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head" data-animate>
           <span class="section__eyebrow">Команда</span>
           <h2>Профессионалы инсталляции</h2>
         </div>
-        <div class="team__layout">
-          <div class="team__visual">
-            <img src="images/team.jpg" alt="Команда инсталляционного отдела Аудиомании" class="team__image" id="teamVisualImage" />
-          </div>
-          <div class="team__cards grid grid--3" id="teamCards"></div>
-          <article class="card">
-            <h3>Андрей Бледных</h3>
-            <p>Менеджер проектов</p>
-          </article>
-          <article class="card">
-            <h3>Сергей Водолажский</h3>
-            <p>Ведущий монтажник</p>
-          </article>
-          <article class="card">
-            <h3>Александр Положенцев</h3>
-            <p>Специалист по настройке и обслуживанию AV-оборудования</p>
-          </article>
-          <article class="card">
-            <h3>Кирилл Рогозный</h3>
-            <p>Специалист по монтажу и настройке AV-систем</p>
-          </article>
-          <article class="card">
-            <h3>Игорь Дударков</h3>
-            <p>Специалист по настройке AV-систем</p>
-          </article>
-        </div>
+        <div class="team__grid" id="teamCards" data-animate data-animate-delay="2"></div>
       </div>
     </section>
 
-    <section class="section" id="contact">
+    <!-- Contact -->
+    <section class="section section--alt" id="contact">
       <div class="container contact">
-        <div class="contact__info">
+        <div class="contact__info" data-animate>
           <span class="section__eyebrow">Контакты</span>
           <h2>Инсталляционный отдел Аудиомании</h2>
           <p id="contactIntro">Обсудим вашу концепцию и ответим на все вопросы о наших решениях.</p>
@@ -141,18 +131,18 @@
             <li id="contactHours">Время работы: 10:00–20:00 без выходных</li>
           </ul>
         </div>
-        <form class="contact__form" action="#" method="post">
-          <label>
+        <form class="contact__form" action="#" method="post" data-animate data-animate-delay="2">
+          <label for="name">
             Ваше имя
-            <input type="text" name="name" placeholder="Иван" required />
+            <input type="text" id="name" name="name" placeholder="Иван" required />
           </label>
-          <label>
+          <label for="contact-field">
             Телефон или email
-            <input type="text" name="contact" placeholder="+7 (900) 000-00-00" required />
+            <input type="text" id="contact-field" name="contact" placeholder="+7 (900) 000-00-00" required />
           </label>
-          <label>
+          <label for="message">
             Задача
-            <textarea name="message" rows="4" placeholder="Кратко опишите задачу"></textarea>
+            <textarea id="message" name="message" rows="4" placeholder="Кратко опишите задачу"></textarea>
           </label>
           <button type="submit" class="btn btn--primary">Отправить заявку</button>
         </form>
@@ -163,7 +153,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <p>© 2026 Аудиомания. Инсталляционный отдел.</p>
-      <a href="#top">Наверх</a>
+      <a href="#top">Наверх ↑</a>
     </div>
   </footer>
 
