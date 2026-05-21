@@ -131,26 +131,30 @@ function initDragScroll(el) {
   let startX, startScroll, dragging = false, moved = false;
 
   el.addEventListener('mousedown', e => {
-    dragging  = true;
-    moved     = false;
-    startX    = e.pageX - el.getBoundingClientRect().left;
+    if (e.button !== 0) return;
+    e.preventDefault();           // не даём браузеру тащить изображения / выделять текст
+    dragging    = true;
+    moved       = false;
+    startX      = e.clientX;
     startScroll = el.scrollLeft;
     el.classList.add('is-dragging');
   });
 
-  window.addEventListener('mousemove', e => {
+  const onMove = e => {
     if (!dragging) return;
-    const x    = e.pageX - el.getBoundingClientRect().left;
-    const walk = x - startX;
-    if (Math.abs(walk) > 4) moved = true;
-    el.scrollLeft = startScroll - walk;
-  });
+    const delta = startX - e.clientX;
+    if (Math.abs(delta) > 3) moved = true;
+    el.scrollLeft = startScroll + delta;
+  };
 
-  const stopDrag = () => {
+  const onUp = () => {
+    if (!dragging) return;
     dragging = false;
     el.classList.remove('is-dragging');
   };
-  window.addEventListener('mouseup', stopDrag);
+
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
 
   /* Блокируем клик после перетаскивания */
   el.addEventListener('click', e => {
