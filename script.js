@@ -14,6 +14,26 @@ Array.from(nav.querySelectorAll('a')).forEach(link => {
   });
 });
 
+/* ── Active nav section tracking ────────────────────── */
+function initActiveNav() {
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = Array.from(nav.querySelectorAll('a:not(.btn--header-cta)'));
+
+  const setActive = id => {
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+    });
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(s => observer.observe(s));
+}
+
 /* ── Contact form ────────────────────────────────────── */
 const form = document.querySelector('.contact__form');
 if (form) {
@@ -53,16 +73,17 @@ const lbClose      = document.getElementById('lightboxClose');
 const lbPrev       = document.getElementById('lightboxPrev');
 const lbNext       = document.getElementById('lightboxNext');
 
-let lbImages = [];
-let lbIndex  = 0;
+let lbImages  = [];
+let lbIndex   = 0;
+let lbCaption = '';
 
 function openLightbox(images, startIndex, caption) {
-  lbImages = images;
-  lbIndex  = startIndex;
+  lbImages  = images;
+  lbIndex   = startIndex;
+  lbCaption = caption || '';
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';
-  renderLightboxSlide(caption);
-  lightboxImg.focus();
+  renderSlide();
 }
 
 function closeLightbox() {
@@ -70,41 +91,72 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
-function renderLightboxSlide(fallbackCaption) {
+function renderSlide() {
   lightboxImg.src = lbImages[lbIndex];
-  lightboxImg.alt = fallbackCaption || '';
-  lightboxCap.textContent = fallbackCaption || '';
+  lightboxImg.alt = lbCaption;
+  lightboxCap.textContent = lbCaption;
+
+  const multi = lbImages.length > 1;
+  lbPrev.style.display = multi ? '' : 'none';
+  lbNext.style.display = multi ? '' : 'none';
 
   lightboxDots.innerHTML = lbImages.map((_, i) =>
     `<button class="lightbox__dot${i === lbIndex ? ' active' : ''}" aria-label="Фото ${i + 1}"></button>`
   ).join('');
 
   lightboxDots.querySelectorAll('.lightbox__dot').forEach((dot, i) => {
-    dot.addEventListener('click', () => { lbIndex = i; renderLightboxSlide(fallbackCaption); });
+    dot.addEventListener('click', () => { lbIndex = i; renderSlide(); });
   });
-
-  lbPrev.style.display = lbImages.length > 1 ? '' : 'none';
-  lbNext.style.display = lbImages.length > 1 ? '' : 'none';
 }
+
+const lbStep = delta => {
+  lbIndex = (lbIndex + delta + lbImages.length) % lbImages.length;
+  renderSlide();
+};
 
 lbClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-
-lbPrev.addEventListener('click', () => {
-  lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
-  renderLightboxSlide(lightboxCap.textContent);
-});
-lbNext.addEventListener('click', () => {
-  lbIndex = (lbIndex + 1) % lbImages.length;
-  renderLightboxSlide(lightboxCap.textContent);
-});
+lbPrev.addEventListener('click', () => lbStep(-1));
+lbNext.addEventListener('click', () => lbStep(+1));
 
 document.addEventListener('keydown', e => {
   if (lightbox.hidden) return;
-  if (e.key === 'Escape')      closeLightbox();
-  if (e.key === 'ArrowLeft')   { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; renderLightboxSlide(lightboxCap.textContent); }
-  if (e.key === 'ArrowRight')  { lbIndex = (lbIndex + 1) % lbImages.length; renderLightboxSlide(lightboxCap.textContent); }
+  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowLeft')  lbStep(-1);
+  if (e.key === 'ArrowRight') lbStep(+1);
 });
+
+/* ── Drag-scroll ─────────────────────────────────────── */
+function initDragScroll(el) {
+  let startX, startScroll, dragging = false, moved = false;
+
+  el.addEventListener('mousedown', e => {
+    dragging  = true;
+    moved     = false;
+    startX    = e.pageX - el.getBoundingClientRect().left;
+    startScroll = el.scrollLeft;
+    el.classList.add('is-dragging');
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const x    = e.pageX - el.getBoundingClientRect().left;
+    const walk = x - startX;
+    if (Math.abs(walk) > 4) moved = true;
+    el.scrollLeft = startScroll - walk;
+  });
+
+  const stopDrag = () => {
+    dragging = false;
+    el.classList.remove('is-dragging');
+  };
+  window.addEventListener('mouseup', stopDrag);
+
+  /* Блокируем клик после перетаскивания */
+  el.addEventListener('click', e => {
+    if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; }
+  }, true);
+}
 
 /* ── Helpers ─────────────────────────────────────────── */
 function renderList(containerId, items, renderItem) {
@@ -149,8 +201,8 @@ async function loadPageContent() {
       );
     }
     setText('heroDescription', hero.description);
-    setText('heroPrimaryCta',  hero.primary_cta);
-    setText('heroSecondaryCta',hero.secondary_cta);
+    setText('heroPrimaryCta',   hero.primary_cta);
+    setText('heroSecondaryCta', hero.secondary_cta);
     setText('statsLabel', hero.stats_label);
     setText('statsValue', hero.stats_value);
     setAttr('heroImage', 'src', hero.image);
@@ -181,20 +233,35 @@ async function loadPageContent() {
         <p>${item.description || ''}</p>
       </article>`);
 
-    /* Expertise / Diplomas */
+    /* Expertise / Diplomas — все дипломы открываются вместе в лайтбоксе */
     const expertise = data.expertise || {};
     setText('expertiseIntro', expertise.intro);
-    renderList('diplomasStrip', expertise.diplomas, d => {
-      const imgs  = [d.image];
-      const title = d.title || '';
-      return `
-        <div class="diploma__item" role="button" tabindex="0"
-             data-lb-images="${encodeURIComponent(JSON.stringify(imgs))}"
-             data-lb-caption="${title}">
-          <img src="${d.image || ''}" alt="${title}" loading="lazy" />
-          <span>${title}</span>
-        </div>`;
-    });
+
+    const diplomas     = expertise.diplomas || [];
+    const diplomaImgs  = diplomas.map(d => d.image);
+    const diplomaStrip = document.getElementById('diplomasStrip');
+
+    if (diplomaStrip && diplomas.length) {
+      diplomaStrip.innerHTML = diplomas.map((d, i) => `
+        <div class="diploma__item" role="button" tabindex="0" data-diploma-index="${i}">
+          <img src="${d.image || ''}" alt="${d.title || ''}" loading="lazy" />
+          <span>${d.title || ''}</span>
+        </div>`).join('');
+
+      diplomaStrip.querySelectorAll('[data-diploma-index]').forEach(el => {
+        el.addEventListener('click', () => {
+          openLightbox(diplomaImgs, parseInt(el.dataset.diplomaIndex, 10), '');
+        });
+        el.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLightbox(diplomaImgs, parseInt(el.dataset.diplomaIndex, 10), '');
+          }
+        });
+      });
+
+      initDragScroll(diplomaStrip);
+    }
 
     /* Clients */
     const clients = data.clients || {};
@@ -217,10 +284,22 @@ async function loadPageContent() {
         </article>`;
     });
 
+    /* Bind gallery lightbox */
+    document.querySelectorAll('[data-lb-images]').forEach(el => {
+      const activate = () => {
+        const images  = JSON.parse(decodeURIComponent(el.dataset.lbImages));
+        const caption = el.dataset.lbCaption || '';
+        openLightbox(images, 0, caption);
+      };
+      el.addEventListener('click', activate);
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+      });
+    });
+
     /* Team */
     const team = data.team || {};
-    const teamPhoto = document.getElementById('teamPhoto');
-    if (teamPhoto && team.photo) teamPhoto.src = team.photo;
+    setAttr('teamPhoto', 'src', team.photo);
 
     renderList('teamCards', team.members || [], m => `
       <article class="card">
@@ -244,21 +323,8 @@ async function loadPageContent() {
     console.error('Ошибка загрузки контента:', err);
   } finally {
     initScrollReveal();
-    bindLightboxTriggers();
+    initActiveNav();
   }
-}
-
-/* ── Bind lightbox to rendered elements ─────────────── */
-function bindLightboxTriggers() {
-  document.querySelectorAll('[data-lb-images]').forEach(el => {
-    const activate = () => {
-      const images  = JSON.parse(decodeURIComponent(el.dataset.lbImages));
-      const caption = el.dataset.lbCaption || '';
-      openLightbox(images, 0, caption);
-    };
-    el.addEventListener('click', activate);
-    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
-  });
 }
 
 loadPageContent();
