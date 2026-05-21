@@ -120,10 +120,9 @@ content:
           - name: images
             label: Все фото в категории
             type: list
-            fields:
-              - name: image
-                label: Фото
-                type: image
+            field:
+              label: Фото
+              type: image
       - name: team
         label: Команда
         type: object
