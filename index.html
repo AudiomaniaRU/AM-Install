@@ -11,6 +11,19 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр изображения" hidden>
+    <button class="lightbox__close" id="lightboxClose" aria-label="Закрыть">&#x2715;</button>
+    <button class="lightbox__prev" id="lightboxPrev" aria-label="Предыдущее">&#x2039;</button>
+    <button class="lightbox__next" id="lightboxNext" aria-label="Следующее">&#x203A;</button>
+    <div class="lightbox__inner">
+      <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+      <p class="lightbox__caption" id="lightboxCaption"></p>
+      <div class="lightbox__dots" id="lightboxDots"></div>
+    </div>
+  </div>
+
   <header class="header" id="top">
     <div class="container header__inner">
       <a class="logo" href="#top">
@@ -23,6 +36,7 @@
         <a href="#advantages">Преимущества</a>
         <a href="#team">Команда</a>
         <a href="#contact">Контакты</a>
+        <a class="btn btn--header-cta" href="#contact">Обсудить проект</a>
       </nav>
     </div>
   </header>
@@ -36,7 +50,7 @@
           <h1 id="heroTitle">Искусство <span class="accent">аудио- и видеорешений</span></h1>
           <p id="heroDescription">Полный цикл: от обсуждения концепции до ввода в эксплуатацию и последующей поддержки. Нашему опыту доверяют не только частные клиенты, но и ведущие компании, архитектурные бюро, отели и девелоперы.</p>
           <div class="hero__actions">
-            <a class="btn btn--primary" id="heroPrimaryCta" href="#contact">Заказать консультацию</a>
+            <a class="btn btn--primary" id="heroPrimaryCta" href="#contact">Обсудить проект</a>
             <a class="btn btn--secondary" id="heroSecondaryCta" href="#services">Узнать услуги</a>
           </div>
         </div>
@@ -91,6 +105,18 @@
           <h2>Почему выбирают нас</h2>
         </div>
         <div class="grid grid--2" id="advantagesGrid" data-animate data-animate-delay="2"></div>
+
+        <!-- Expertise / Diplomas -->
+        <div class="expertise" id="expertiseBlock" data-animate>
+          <p class="expertise__intro" id="expertiseIntro"></p>
+          <div class="diplomas" id="diplomasStrip"></div>
+        </div>
+
+        <!-- Client logos -->
+        <div class="clients" id="clientsBlock" data-animate>
+          <h3 class="clients__title" id="clientsTitle"></h3>
+          <div class="clients__logos" id="clientsLogos"></div>
+        </div>
       </div>
     </section>
 
@@ -114,7 +140,10 @@
           <span class="section__eyebrow">Команда</span>
           <h2>Профессионалы инсталляции</h2>
         </div>
-        <div class="team__grid" id="teamCards" data-animate data-animate-delay="2"></div>
+        <div class="team__layout" data-animate>
+          <img src="images/team.jpg" alt="Команда инсталляционного отдела Аудиомании" class="team__photo" id="teamPhoto" width="1200" height="600" loading="lazy" />
+          <div class="team__grid" id="teamCards"></div>
+        </div>
       </div>
     </section>
 

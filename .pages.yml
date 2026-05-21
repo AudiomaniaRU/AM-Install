@@ -51,11 +51,11 @@ content:
             label: Картинка услуги
             type: image
       - name: process
-        label: Процесс
+        label: Этапы работы
         type: list
         fields:
           - name: step
-            label: Шаг
+            label: Шаг (номер)
             type: number
           - name: title
             label: Заголовок шага
@@ -73,26 +73,74 @@ content:
           - name: description
             label: Описание преимущества
             type: text
+      - name: expertise
+        label: Экспертиза и дипломы
+        type: object
+        fields:
+          - name: intro
+            label: Вступительный текст
+            type: text
+          - name: diplomas
+            label: Дипломы
+            type: list
+            fields:
+              - name: image
+                label: Изображение диплома
+                type: image
+              - name: title
+                label: Подпись
+                type: string
+      - name: clients
+        label: Клиенты
+        type: object
+        fields:
+          - name: title
+            label: Заголовок раздела
+            type: string
+          - name: logos
+            label: Логотипы клиентов
+            type: list
+            fields:
+              - name: image
+                label: Логотип
+                type: image
+              - name: name
+                label: Название компании
+                type: string
       - name: gallery
         label: Галерея
         type: list
         fields:
           - name: title
-            label: Название изображения
+            label: Название категории
             type: string
           - name: image
-            label: Картинка галереи
+            label: Превью (обложка)
             type: image
+          - name: images
+            label: Все фото в категории
+            type: list
+            fields:
+              - name: image
+                label: Фото
+                type: image
       - name: team
         label: Команда
-        type: list
+        type: object
         fields:
-          - name: name
-            label: Имя
-            type: string
-          - name: role
-            label: Должность
-            type: string
+          - name: photo
+            label: Групповое фото команды
+            type: image
+          - name: members
+            label: Участники
+            type: list
+            fields:
+              - name: name
+                label: Имя
+                type: string
+              - name: role
+                label: Должность
+                type: string
       - name: contact
         label: Контакты
         type: object
