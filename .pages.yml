@@ -9,12 +9,55 @@ content:
     type: file
     path: content/page.yml
     fields:
-      - name: hero
-        label: Hero
-        type: object
+
+      # ── Hero ──────────────────────────────────────────
+      - name: hero_eyebrow
+        label: "Hero — подзаголовок"
+        type: string
+      - name: hero_title
+        label: "Hero — заголовок"
+        type: string
+      - name: hero_description
+        label: "Hero — описание"
+        type: text
+      - name: hero_primary_cta
+        label: "Hero — текст главной кнопки"
+        type: string
+      - name: hero_secondary_cta
+        label: "Hero — текст второй кнопки"
+        type: string
+      - name: hero_stats_label
+        label: "Hero — подпись статистики"
+        type: string
+      - name: hero_stats_value
+        label: "Hero — значение статистики"
+        type: string
+      - name: hero_image
+        label: "Hero — картинка"
+        type: image
+
+      # ── Услуги ────────────────────────────────────────
+      - name: services
+        label: Услуги
+        type: list
         fields:
-          - name: eyebrow
-            label: Верхний текст
+          - name: title
+            label: Название
+            type: string
+          - name: description
+            label: Описание
+            type: text
+          - name: image
+            label: Картинка
+            type: image
+
+      # ── Этапы работы ──────────────────────────────────
+      - name: process
+        label: Этапы работы
+        type: list
+        fields:
+          - name: step
+            label: Номер шага
             type: string
           - name: title
             label: Заголовок
@@ -22,91 +65,50 @@ content:
           - name: description
             label: Описание
             type: text
-          - name: primary_cta
-            label: Текст главной кнопки
-            type: string
-          - name: secondary_cta
-            label: Текст второй кнопки
-            type: string
-          - name: stats_label
-            label: Подпись статистики
-            type: string
-          - name: stats_value
-            label: Значение статистики
-            type: string
-          - name: image
-            label: Картинка hero
-            type: image
-      - name: services
-        label: Услуги
-        type: list
-        fields:
-          - name: title
-            label: Заголовок услуги
-            type: string
-          - name: description
-            label: Описание услуги
-            type: text
-          - name: image
-            label: Картинка услуги
-            type: image
-      - name: process
-        label: Этапы работы
-        type: list
-        fields:
-          - name: step
-            label: Шаг (номер)
-            type: number
-          - name: title
-            label: Заголовок шага
-            type: string
-          - name: description
-            label: Описание шага
-            type: text
+
+      # ── Преимущества ──────────────────────────────────
       - name: advantages
         label: Преимущества
         type: list
         fields:
           - name: title
-            label: Заголовок преимущества
+            label: Заголовок
             type: string
           - name: description
-            label: Описание преимущества
+            label: Описание
             type: text
-      - name: expertise
-        label: Экспертиза и дипломы
-        type: object
+
+      # ── Экспертиза ────────────────────────────────────
+      - name: expertise_intro
+        label: "Экспертиза — вступительный текст"
+        type: text
+      - name: expertise_diplomas
+        label: "Экспертиза — дипломы"
+        type: list
         fields:
-          - name: intro
-            label: Вступительный текст
-            type: text
-          - name: diplomas
-            label: Дипломы
-            type: list
-            fields:
-              - name: image
-                label: Изображение диплома
-                type: image
-              - name: title
-                label: Подпись
-                type: string
-      - name: clients
-        label: Клиенты
-        type: object
-        fields:
+          - name: image
+            label: Изображение
+            type: image
           - name: title
-            label: Заголовок раздела
+            label: Подпись
             type: string
-          - name: logos
-            label: Логотипы клиентов
-            type: list
-            fields:
-              - name: image
-                label: Логотип
-                type: image
-              - name: name
-                label: Название компании
-                type: string
+
+      # ── Клиенты ───────────────────────────────────────
+      - name: clients_title
+        label: "Клиенты — заголовок раздела"
+        type: string
+      - name: clients_logos
+        label: "Клиенты — логотипы"
+        type: list
+        fields:
+          - name: image
+            label: Логотип
+            type: image
+          - name: name
+            label: Название компании
+            type: string
+
+      # ── Галерея ───────────────────────────────────────
       - name: gallery
         label: Галерея
         type: list
@@ -123,46 +125,40 @@ content:
             field:
               label: Фото
               type: image
-      - name: team
-        label: Команда
-        type: object
+
+      # ── Команда ───────────────────────────────────────
+      - name: team_photo
+        label: "Команда — групповое фото"
+        type: image
+      - name: team_members
+        label: "Команда — участники"
+        type: list
         fields:
-          - name: photo
-            label: Групповое фото команды
-            type: image
-          - name: members
-            label: Участники
-            type: list
-            fields:
-              - name: name
-                label: Имя
-                type: string
-              - name: role
-                label: Должность
-                type: string
-      - name: contact
-        label: Контакты
-        type: object
-        fields:
-          - name: intro
-            label: Вступительный текст
-            type: text
-          - name: phone
-            label: Телефон
+          - name: name
+            label: Имя
             type: string
-          - name: email
-            label: Email
+          - name: role
+            label: Должность
             type: string
-          - name: hours
-            label: Время работы
-            type: string
-      - name: cta
-        label: CTA
-        type: object
-        fields:
-          - name: title
-            label: Заголовок CTA
-            type: string
-          - name: button
-            label: Текст кнопки CTA
-            type: string
+
+      # ── Контакты ──────────────────────────────────────
+      - name: contact_intro
+        label: "Контакты — вступительный текст"
+        type: text
+      - name: contact_phone
+        label: "Контакты — телефон"
+        type: string
+      - name: contact_email
+        label: "Контакты — email"
+        type: string
+      - name: contact_hours
+        label: "Контакты — время работы"
+        type: string
+
+      # ── CTA ───────────────────────────────────────────
+      - name: cta_title
+        label: "CTA — заголовок"
+        type: string
+      - name: cta_button
+        label: "CTA — текст кнопки"
+        type: string

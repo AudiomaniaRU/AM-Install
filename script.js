@@ -195,21 +195,20 @@ async function loadPageContent() {
     if (!data) return;
 
     /* Hero */
-    const hero = data.hero || {};
-    setText('heroEyebrow', hero.eyebrow);
-    if (hero.title) {
+    setText('heroEyebrow', data.hero_eyebrow);
+    if (data.hero_title) {
       const el = document.getElementById('heroTitle');
-      if (el) el.innerHTML = hero.title.replace(
+      if (el) el.innerHTML = data.hero_title.replace(
         /(аудио-\s*и\s*видеорешений)/i,
         '<span class="accent">$1</span>'
       );
     }
-    setText('heroDescription', hero.description);
-    setText('heroPrimaryCta',   hero.primary_cta);
-    setText('heroSecondaryCta', hero.secondary_cta);
-    setText('statsLabel', hero.stats_label);
-    setText('statsValue', hero.stats_value);
-    setAttr('heroImage', 'src', hero.image);
+    setText('heroDescription', data.hero_description);
+    setText('heroPrimaryCta',   data.hero_primary_cta);
+    setText('heroSecondaryCta', data.hero_secondary_cta);
+    setText('statsLabel', data.hero_stats_label);
+    setText('statsValue', data.hero_stats_value);
+    setAttr('heroImage', 'src', data.hero_image);
 
     /* Services */
     renderList('servicesGrid', data.services, s => `
@@ -238,10 +237,9 @@ async function loadPageContent() {
       </article>`);
 
     /* Expertise / Diplomas — все дипломы открываются вместе в лайтбоксе */
-    const expertise = data.expertise || {};
-    setText('expertiseIntro', expertise.intro);
+    setText('expertiseIntro', data.expertise_intro);
 
-    const diplomas     = expertise.diplomas || [];
+    const diplomas     = data.expertise_diplomas || [];
     const diplomaImgs  = diplomas.map(d => d.image);
     const diplomaStrip = document.getElementById('diplomasStrip');
 
@@ -268,9 +266,8 @@ async function loadPageContent() {
     }
 
     /* Clients */
-    const clients = data.clients || {};
-    setText('clientsTitle', clients.title);
-    renderList('clientsLogos', clients.logos, c => `
+    setText('clientsTitle', data.clients_title);
+    renderList('clientsLogos', data.clients_logos, c => `
       <div class="client__logo" title="${c.name || ''}">
         <img src="${c.image || ''}" alt="${c.name || ''}" loading="lazy" />
       </div>`);
@@ -302,26 +299,23 @@ async function loadPageContent() {
     });
 
     /* Team */
-    const team = data.team || {};
-    setAttr('teamPhoto', 'src', team.photo);
+    setAttr('teamPhoto', 'src', data.team_photo);
 
-    renderList('teamCards', team.members || [], m => `
+    renderList('teamCards', data.team_members || [], m => `
       <article class="card">
         <h3>${m.name || ''}</h3>
         <p>${m.role || ''}</p>
       </article>`);
 
     /* Contact */
-    const contact = data.contact || {};
-    setText('contactIntro', contact.intro);
-    setLink('contactPhone', `tel:${(contact.phone || '').replace(/\D+/g, '')}`, contact.phone);
-    setLink('contactEmail', `mailto:${contact.email || ''}`, contact.email);
-    setText('contactHours', contact.hours);
+    setText('contactIntro', data.contact_intro);
+    setLink('contactPhone', `tel:${(data.contact_phone || '').replace(/\D+/g, '')}`, data.contact_phone);
+    setLink('contactEmail', `mailto:${data.contact_email || ''}`, data.contact_email);
+    setText('contactHours', data.contact_hours);
 
     /* CTA */
-    const cta = data.cta || {};
-    setText('ctaTitle',  cta.title);
-    setText('ctaButton', cta.button);
+    setText('ctaTitle',  data.cta_title);
+    setText('ctaButton', data.cta_button);
 
   } catch (err) {
     console.error('Ошибка загрузки контента:', err);
