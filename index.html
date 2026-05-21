@@ -26,19 +26,19 @@
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__content">
-          <span class="eyebrow">Инсталляционные решения</span>
-          <h1>Искусство аудио- и видеорешений</h1>
-          <p>Полный цикл: от обсуждения концепции до ввода в эксплуатацию и последующей поддержки. Нашему опыту доверяют не только частные клиенты, но и ведущие компании, архитектурные бюро, отели и девелоперы.</p>
+          <span class="eyebrow" id="heroEyebrow">Инсталляционные решения</span>
+          <h1 id="heroTitle">Искусство аудио- и видеорешений</h1>
+          <p id="heroDescription">Полный цикл: от обсуждения концепции до ввода в эксплуатацию и последующей поддержки. Нашему опыту доверяют не только частные клиенты, но и ведущие компании, архитектурные бюро, отели и девелоперы.</p>
           <div class="hero__actions">
-            <a class="btn btn--primary" href="#contact">Заказать консультацию</a>
-            <a class="btn btn--secondary" href="#services">Узнать услуги</a>
+            <a class="btn btn--primary" id="heroPrimaryCta" href="#contact">Заказать консультацию</a>
+            <a class="btn btn--secondary" id="heroSecondaryCta" href="#services">Узнать услуги</a>
           </div>
         </div>
         <div class="hero__visual">
-          <img src="images/hero-cover.jpg" alt="Инсталляционный отдел Аудиомании" class="hero__image" />
+          <img src="images/hero-cover.jpg" alt="Инсталляционный отдел Аудиомании" class="hero__image" id="heroImage" />
           <div class="hero__card">
-            <p>Опыт и надежность</p>
-            <strong>1200+ выполненных проектов</strong>
+            <p id="statsLabel">Опыт и надежность</p>
+            <strong id="statsValue">1200+ выполненных проектов</strong>
           </div>
         </div>
       </div>
@@ -50,38 +50,7 @@
           <span class="section__eyebrow">Услуги</span>
           <h2>Что мы делаем</h2>
         </div>
-        <div class="grid grid--3">
-          <article class="card">
-            <img src="images/stereo.jpg" alt="Стереосистемы" class="card__image" />
-            <h3>Стереосистемы</h3>
-            <p>Двухканальные стереосистемы для высококачественного воспроизведения музыки (виниловые проигрыватели, стереоусилители и акустические системы).</p>
-          </article>
-          <article class="card">
-            <img src="images/multimedia.jpg" alt="Мультимедийные комнаты" class="card__image" />
-            <h3>Мультимедийные комнаты</h3>
-            <p>Универсальное пространство для отдыха, объединяющее просмотр кино, ТВ, прослушивание музыки с удобным управлением и сохранением дизайна помещения.</p>
-          </article>
-          <article class="card">
-            <img src="images/home-theater.jpg" alt="Персональные кинозалы" class="card__image" />
-            <h3>Персональные кинозалы</h3>
-            <p>Полноценный кинозал — от концепции и акустического расчета до установки специализированного оборудования с максимальным качеством звука.</p>
-          </article>
-          <article class="card">
-            <img src="images/multiroom.png" alt="Системы мультирум" class="card__image" />
-            <h3>Системы мультирум</h3>
-            <p>Единая аудиосистема для всего дома с независимыми зонами, источниками и управлением через приложение, панели или сценарии автоматизации.</p>
-          </article>
-          <article class="card">
-            <img src="images/control-systems.jpg" alt="Системы управления" class="card__image" />
-            <h3>Системы управления</h3>
-            <p>Интеллектуальное управление аудио-видео через единый интуитивный интерфейс. Контроль сцен, источников, доп. управление домашней автоматизацией.</p>
-          </article>
-          <article class="card">
-            <img src="images/horeca.jpg" alt="Решения для HoReCa" class="card__image" />
-            <h3>Решения для HoReCa</h3>
-            <p>Звуковые и мультимедиа-решения для ресторанов и кафе, где качественный звук становится частью атмосферы и впечатления гостей.</p>
-          </article>
-        </div>
+        <div class="grid grid--3" id="servicesGrid"></div>
       </div>
     </section>
 
@@ -91,24 +60,7 @@
           <span class="section__eyebrow">Галерея</span>
           <h2>Наши работы</h2>
         </div>
-        <div class="gallery">
-          <article class="gallery__item">
-            <img src="images/multimedia-2.jpg" alt="Мультимедийная комната" />
-            <h3>Мультимедийные комнаты</h3>
-          </article>
-          <article class="gallery__item">
-            <img src="images/home-theater-2.jpg" alt="Персональный кинозал" />
-            <h3>Персональные кинозалы</h3>
-          </article>
-          <article class="gallery__item">
-            <img src="images/control-2.jpg" alt="Система управления" />
-            <h3>Системы управления</h3>
-          </article>
-          <article class="gallery__item">
-            <img src="images/horeca-2.jpg" alt="Решение для HoReCa" />
-            <h3>HoReCa и коммерческие проекты</h3>
-          </article>
-        </div>
+        <div class="gallery" id="galleryGrid"></div>
       </div>
     </section>
 
@@ -118,28 +70,7 @@
           <span class="section__eyebrow">Процесс</span>
           <h2>Как мы работаем</h2>
         </div>
-        <div class="timeline">
-          <div class="timeline__item">
-            <span>1</span>
-            <h3>Ваше обращение</h3>
-            <p>Вы описываете задачу, мы слушаем и изучаем объект вашего проекта.</p>
-          </div>
-          <div class="timeline__item">
-            <span>2</span>
-            <h3>Разработка концепции</h3>
-            <p>Развиваем идею с учетом архитектуры, дизайна и вашего бюджета.</p>
-          </div>
-          <div class="timeline__item">
-            <span>3</span>
-            <h3>Подготовка спецификации и проектирование</h3>
-            <p>Профессиональное проектирование обеспечивает точный подбор оборудования и его корректную интеграцию в пространство.</p>
-          </div>
-          <div class="timeline__item">
-            <span>4</span>
-            <h3>Реализация и запуск</h3>
-            <p>Установка, настройка, проверка и обучение. Полная поддержка на протяжении всего проекта.</p>
-          </div>
-        </div>
+        <div class="timeline" id="processTimeline"></div>
       </div>
     </section>
 
@@ -149,24 +80,7 @@
           <span class="section__eyebrow">Преимущества</span>
           <h2>Почему выбирают нас</h2>
         </div>
-        <div class="grid grid--2">
-          <article class="feature">
-            <h3>Экспертиза и опыт</h3>
-            <p>30 лет работы и 1200+ выполненных проектов. Проверенные решения с надежными отношениями с партнерами по всему миру.</p>
-          </article>
-          <article class="feature">
-            <h3>Собственный шоу-рум</h3>
-            <p>Любое выбранное оборудование можно услышать и увидеть в работе. Принимайте решения на основе реального опыта.</p>
-          </article>
-          <article class="feature">
-            <h3>Полный цикл</h3>
-            <p>Синергия бизнес-процессов, охватывающая весь цикл проекта — от обсуждения концепции до ввода в эксплуатацию и поддержки.</p>
-          </article>
-          <article class="feature">
-            <h3>Индивидуальный подход</h3>
-            <p>Мы проектируем системы под вашу архитектуру, бюджет и стиль жизни, сохраняя дизайн и чистоту монтажа.</p>
-          </article>
-        </div>
+        <div class="grid grid--2" id="advantagesGrid"></div>
       </div>
     </section>
 
@@ -174,9 +88,9 @@
       <div class="container cta">
         <div>
           <span class="section__eyebrow">Готовы обсудить проект?</span>
-          <h2>Оставьте заявку, и наш менеджер свяжется с вами в течение рабочего дня</h2>
+          <h2 id="ctaTitle">Оставьте заявку, и наш менеджер свяжется с вами в течение рабочего дня</h2>
         </div>
-        <a class="btn btn--primary" href="#contact">Оставить заявку</a>
+        <a class="btn btn--primary" id="ctaButton" href="#contact">Оставить заявку</a>
       </div>
     </section>
 
@@ -188,13 +102,9 @@
         </div>
         <div class="team__layout">
           <div class="team__visual">
-            <img src="images/team.jpg" alt="Команда инсталляционного отдела Аудиомании" class="team__image" />
+            <img src="images/team.jpg" alt="Команда инсталляционного отдела Аудиомании" class="team__image" id="teamVisualImage" />
           </div>
-          <div class="team__cards grid grid--3">
-            <article class="card">
-              <h3>Виталий Кудашкин</h3>
-              <p>Руководитель отдела инсталляций</p>
-            </article>
+          <div class="team__cards grid grid--3" id="teamCards"></div>
           <article class="card">
             <h3>Андрей Бледных</h3>
             <p>Менеджер проектов</p>
@@ -224,11 +134,11 @@
         <div class="contact__info">
           <span class="section__eyebrow">Контакты</span>
           <h2>Инсталляционный отдел Аудиомании</h2>
-          <p>Обсудим вашу концепцию и ответим на все вопросы о наших решениях.</p>
+          <p id="contactIntro">Обсудим вашу концепцию и ответим на все вопросы о наших решениях.</p>
           <ul>
-            <li>Телефон: <a href="tel:+74951804560">+7 (495) 180-45-60</a></li>
-            <li>Email: <a href="mailto:av@audiomania.ru">av@audiomania.ru</a></li>
-            <li>Время работы: 10:00–20:00 без выходных</li>
+            <li>Телефон: <a id="contactPhone" href="tel:+74951804560">+7 (495) 180-45-60</a></li>
+            <li>Email: <a id="contactEmail" href="mailto:av@audiomania.ru">av@audiomania.ru</a></li>
+            <li id="contactHours">Время работы: 10:00–20:00 без выходных</li>
           </ul>
         </div>
         <form class="contact__form" action="#" method="post">
@@ -257,6 +167,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

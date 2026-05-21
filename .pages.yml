@@ -1,5 +1,5 @@
 # Конфигурация проекта для Pages CMS.
-# Если используется GitHub Pages, публикация берется из корня репозитория.
+# Управление контентом лендинга в едином файле content/page.yml.
 site:
   name: Audiomania Install
   title: Инсталляционный отдел Аудиомании
@@ -8,4 +8,121 @@ build:
   publish: .
   command: echo "No build needed"
 content:
-  dir: content_old
+  dir: content
+  collections:
+    - name: landing
+      label: Лендинг
+      files:
+        - file: content/page.yml
+          label: Главная страница
+          fields:
+            - name: hero
+              label: Hero
+              widget: object
+              fields:
+                - name: eyebrow
+                  label: Верхний текст
+                  widget: string
+                - name: title
+                  label: Заголовок
+                  widget: string
+                - name: description
+                  label: Описание
+                  widget: text
+                - name: primary_cta
+                  label: Текст главной кнопки
+                  widget: string
+                - name: secondary_cta
+                  label: Текст второй кнопки
+                  widget: string
+                - name: stats_label
+                  label: Подпись статистики
+                  widget: string
+                - name: stats_value
+                  label: Значение статистики
+                  widget: string
+                - name: image
+                  label: Путь к картинке hero
+                  widget: string
+            - name: services
+              label: Услуги
+              widget: list
+              fields:
+                - name: title
+                  label: Заголовок услуги
+                  widget: string
+                - name: description
+                  label: Описание услуги
+                  widget: text
+                - name: image
+                  label: Путь к изображению услуги
+                  widget: string
+            - name: process
+              label: Процесс
+              widget: list
+              fields:
+                - name: step
+                  label: Шаг
+                  widget: number
+                - name: title
+                  label: Заголовок шага
+                  widget: string
+                - name: description
+                  label: Описание шага
+                  widget: text
+            - name: advantages
+              label: Преимущества
+              widget: list
+              fields:
+                - name: title
+                  label: Заголовок преимущества
+                  widget: string
+                - name: description
+                  label: Описание преимущества
+                  widget: text
+            - name: gallery
+              label: Галерея
+              widget: list
+              fields:
+                - name: title
+                  label: Название изображения
+                  widget: string
+                - name: image
+                  label: Путь к изображению галереи
+                  widget: string
+            - name: team
+              label: Команда
+              widget: list
+              fields:
+                - name: name
+                  label: Имя
+                  widget: string
+                - name: role
+                  label: Должность
+                  widget: string
+            - name: contact
+              label: Контакты
+              widget: object
+              fields:
+                - name: intro
+                  label: Вступительный текст
+                  widget: text
+                - name: phone
+                  label: Телефон
+                  widget: string
+                - name: email
+                  label: Email
+                  widget: string
+                - name: hours
+                  label: Время работы
+                  widget: string
+            - name: cta
+              label: CTA
+              widget: object
+              fields:
+                - name: title
+                  label: Заголовок CTA
+                  widget: string
+                - name: button
+                  label: Текст кнопки CTA
+                  widget: string
