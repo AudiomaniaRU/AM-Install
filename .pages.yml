@@ -1,5 +1,5 @@
 # Конфигурация Pages CMS.
-# Управление контентом лендинга через файл content/page.yml.
+# Управление контентом лендинга через файл content/page.json.
 media:
   input: images
   output: /images
@@ -39,7 +39,8 @@ content:
       # ── Услуги ────────────────────────────────────────
       - name: services
         label: Услуги
-        type: list
+        type: object
+        list: true
         fields:
           - name: title
             label: Название
@@ -54,7 +55,8 @@ content:
       # ── Этапы работы ──────────────────────────────────
       - name: process
         label: Этапы работы
-        type: list
+        type: object
+        list: true
         fields:
           - name: step
             label: Номер шага
@@ -69,7 +71,8 @@ content:
       # ── Преимущества ──────────────────────────────────
       - name: advantages
         label: Преимущества
-        type: list
+        type: object
+        list: true
         fields:
           - name: title
             label: Заголовок
@@ -84,7 +87,8 @@ content:
         type: text
       - name: expertise_diplomas
         label: "Экспертиза — дипломы"
-        type: list
+        type: object
+        list: true
         fields:
           - name: image
             label: Изображение
@@ -99,7 +103,8 @@ content:
         type: string
       - name: clients_logos
         label: "Клиенты — логотипы"
-        type: list
+        type: object
+        list: true
         fields:
           - name: image
             label: Логотип
@@ -111,7 +116,8 @@ content:
       # ── Галерея ───────────────────────────────────────
       - name: gallery
         label: Галерея
-        type: list
+        type: object
+        list: true
         fields:
           - name: title
             label: Название категории
@@ -121,10 +127,8 @@ content:
             type: image
           - name: images
             label: Все фото в категории
-            type: list
-            field:
-              label: Фото
-              type: image
+            type: image
+            list: true
 
       # ── Команда ───────────────────────────────────────
       - name: team_photo
@@ -132,7 +136,8 @@ content:
         type: image
       - name: team_members
         label: "Команда — участники"
-        type: list
+        type: object
+        list: true
         fields:
           - name: name
             label: Имя
