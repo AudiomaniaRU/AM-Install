@@ -7,7 +7,7 @@ content:
   - name: landing
     label: Лендинг
     type: file
-    path: content/page.yml
+    path: content/page.json
     fields:
 
       # ── Hero ──────────────────────────────────────────

@@ -187,11 +187,31 @@ function setLink(id, href, text) {
 }
 
 /* ── Content loader ──────────────────────────────────── */
+/* ── Helpers ─────────────────────────────────────────── */
+// ... (renderList, setText, setAttr, setLink оставляем как есть) ...
+
+// 🔹 НОВАЯ ФУНКЦИЯ: нормализация изображений для галереи
+// Pages CMS сохраняет вложенный список как [{url: "..."}], а у вас сейчас просто ["..."]
+function normalizeImages(images) {
+  if (!Array.isArray(images)) return [];
+  return images.map(img => {
+    // Если уже объект с url — возвращаем url
+    if (img && typeof img === 'object' && img.url) return img.url;
+    // Если строка — возвращаем как есть
+    if (typeof img === 'string') return img;
+    return '';
+  }).filter(Boolean);
+}
+
+/* ── Content loader ──────────────────────────────────── */
 async function loadPageContent() {
   try {
-    const resp = await fetch('content/page.yml');
+    // 🔹 1. Загружаем JSON вместо YAML
+    const resp = await fetch('content/page.json');
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const data = jsyaml.load(await resp.text());
+    
+    // 🔹 2. Парсим нативным JSON (jsyaml больше не нужен)
+    const data = await resp.json();
     if (!data) return;
 
     /* Hero */
@@ -236,7 +256,7 @@ async function loadPageContent() {
         <p>${item.description || ''}</p>
       </article>`);
 
-    /* Expertise / Diplomas — все дипломы открываются вместе в лайтбоксе */
+    /* Expertise / Diplomas */
     setText('expertiseIntro', data.expertise_intro);
 
     const diplomas     = data.expertise_diplomas || [];
@@ -272,14 +292,19 @@ async function loadPageContent() {
         <img src="${c.image || ''}" alt="${c.name || ''}" loading="lazy" />
       </div>`);
 
-    /* Gallery with lightbox */
+    /* Gallery with lightbox — 🔹 3. Используем normalizeImages */
     renderList('galleryGrid', data.gallery, item => {
-      const images  = item.images || [item.image];
-      const encoded = encodeURIComponent(JSON.stringify(images));
+      // 🔹 Нормализуем: работает и со старым ["img.jpg"], и с новым [{url: "img.jpg"}]
+      const images  = normalizeImages(item.images);
+      const cover   = item.image || 'images/hero-cover.jpg';
+      // Если в массиве ничего нет — добавляем обложку, чтобы лайтбокс не был пустым
+      const lbImages = images.length ? images : [cover];
+      const encoded = encodeURIComponent(JSON.stringify(lbImages));
+      
       return `
         <article class="gallery__item" role="button" tabindex="0"
                  data-lb-images="${encoded}" data-lb-caption="${item.title || ''}">
-          <img src="${item.image || 'images/hero-cover.jpg'}" alt="${item.title || ''}"
+          <img src="${cover}" alt="${item.title || ''}"
                width="400" height="220" loading="lazy" />
           <h3>${item.title || ''}</h3>
         </article>`;
