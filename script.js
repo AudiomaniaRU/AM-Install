@@ -70,8 +70,6 @@ const lightboxImg  = document.getElementById('lightboxImg');
 const lightboxCap  = document.getElementById('lightboxCaption');
 const lightboxDots = document.getElementById('lightboxDots');
 const lbClose      = document.getElementById('lightboxClose');
-const lbPrev       = document.getElementById('lightboxPrev');
-const lbNext       = document.getElementById('lightboxNext');
 
 let lbImages  = [];
 let lbIndex   = 0;
@@ -96,10 +94,6 @@ function renderSlide() {
   lightboxImg.alt = lbCaption;
   lightboxCap.textContent = lbCaption;
 
-  const multi = lbImages.length > 1;
-  lbPrev.style.display = multi ? '' : 'none';
-  lbNext.style.display = multi ? '' : 'none';
-
   lightboxDots.innerHTML = lbImages.map((_, i) =>
     `<button class="lightbox__dot${i === lbIndex ? ' active' : ''}" aria-label="Фото ${i + 1}"></button>`
   ).join('');
@@ -116,8 +110,6 @@ const lbStep = delta => {
 
 lbClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-lbPrev.addEventListener('click', () => lbStep(-1));
-lbNext.addEventListener('click', () => lbStep(+1));
 
 document.addEventListener('keydown', e => {
   if (lightbox.hidden) return;
@@ -125,6 +117,16 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft')  lbStep(-1);
   if (e.key === 'ArrowRight') lbStep(+1);
 });
+
+/* ── Touch swipe ─────────────────────────────────────── */
+let lbTouchX = 0;
+lightbox.addEventListener('touchstart', e => {
+  lbTouchX = e.touches[0].clientX;
+}, { passive: true });
+lightbox.addEventListener('touchend', e => {
+  const diff = lbTouchX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) lbStep(diff > 0 ? 1 : -1);
+}, { passive: true });
 
 /* ── Drag-scroll ─────────────────────────────────────── */
 function initDragScroll(el) {

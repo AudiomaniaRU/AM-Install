@@ -826,10 +826,10 @@
     background: var(--color-white);
   }
 
-  .lightbox__close,
-  .lightbox__prev,
-  .lightbox__next {
+  .lightbox__close {
     position: fixed;
+    top: var(--sp-6);
+    right: var(--sp-6);
     background: rgba(255,255,255,.12);
     border: none;
     color: var(--color-white);
@@ -839,20 +839,14 @@
     height: 48px;
     display: grid;
     place-items: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 1;
     transition: background var(--dur-fast) var(--ease);
   }
 
-  .lightbox__close:hover,
-  .lightbox__prev:hover,
-  .lightbox__next:hover {
+  .lightbox__close:hover {
     background: rgba(255,255,255,.25);
   }
-
-  .lightbox__close { top: var(--sp-6); right: var(--sp-6); font-size: 1rem; }
-  .lightbox__prev  { left: var(--sp-5); top: 50%; transform: translateY(-50%); }
-  .lightbox__next  { right: var(--sp-5); top: 50%; transform: translateY(-50%); }
 
   /* ── Contact ──────────────────────────────────────── */
   .contact {
@@ -1109,6 +1103,4 @@
 
   .contact__form { padding: var(--sp-6); }
 
-  .lightbox__prev { left: var(--sp-2); }
-  .lightbox__next { right: var(--sp-2); }
 }
