@@ -2,7 +2,7 @@
 # Управление контентом лендинга через файл content/page.json.
 media:
   input: images
-  output: /images
+  output: images
 content:
   - name: landing
     label: Лендинг

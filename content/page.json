@@ -6,37 +6,37 @@
   "hero_secondary_cta": "Узнать услуги",
   "hero_stats_label": "Опыт и надежность",
   "hero_stats_value": "1200+ выполненных проектов",
-  "hero_image": "/images/hero-cover.jpg",
+  "hero_image": "images/hero-cover.jpg",
   "services": [
     {
       "title": "Стереосистемы",
       "description": "Двухканальные стереосистемы для высококачественного воспроизведения музыки (виниловые проигрыватели, стереоусилители и акустические системы).",
-      "image": "/images/stereo.jpg"
+      "image": "images/stereo.jpg"
     },
     {
       "title": "Мультимедийные комнаты",
       "description": "Универсальное пространство для отдыха и развлечений, объединяющее просмотр кино, ТВ, прослушивание музыки и игры с удобным управлением для всей семьи. Интеграция аудио- и видеооборудования выполняется с сохранением дизайна и архитектурной логики помещения.",
-      "image": "/images/multimedia.jpg"
+      "image": "images/multimedia.jpg"
     },
     {
       "title": "Персональные кинозалы",
       "description": "Проектирование и реализация полноценного кинозала — от концепции и акустического расчета до установки специализированного оборудования с максимальным качеством звука.",
-      "image": "/images/home-theater.jpg"
+      "image": "images/home-theater.jpg"
     },
     {
       "title": "Системы мультирум",
       "description": "Единая аудиосистема для всего дома с независимыми зонами, источниками и уровнями громкости. Управление через приложение, панели или сценарии автоматизации.",
-      "image": "/images/multiroom.png"
+      "image": "images/multiroom.png"
     },
     {
       "title": "Системы управления",
       "description": "Интеллектуальное управление аудио-видео через единый интуитивно понятный интерфейс. Полный контроль сцен, источников и сценариев — с сенсорных панелей, пульта или мобильного устройства.",
-      "image": "/images/control-systems.jpg"
+      "image": "images/control-systems.jpg"
     },
     {
       "title": "Решения для HoReCa",
       "description": "Звуковые и мультимедиа-решения для ресторанов и кафе, где качественный звук становится частью атмосферы и впечатления гостей.",
-      "image": "/images/horeca.jpg"
+      "image": "images/horeca.jpg"
     }
   ],
   "process": [
@@ -87,122 +87,122 @@
   "expertise_intro": "30 лет работы в области профессионального аудио и видео. Наши награды и сертификаты подтверждают статус лучшего дилера России по ключевым брендам.",
   "expertise_diplomas": [
     {
-      "image": "/images/cert-rotel-2018.jpg",
+      "image": "images/cert-rotel-2018.jpg",
       "title": "Лучший дилер Rotel 2018"
     },
     {
-      "image": "/images/cert-luxman-2018.jpg",
+      "image": "images/cert-luxman-2018.jpg",
       "title": "Лучший дилер Luxman 2018"
     },
     {
-      "image": "/images/cert-marantz-2018.jpg",
+      "image": "images/cert-marantz-2018.jpg",
       "title": "Лучший дилер Marantz 2018"
     },
     {
-      "image": "/images/cert-blade-2021.jpg",
+      "image": "images/cert-blade-2021.jpg",
       "title": "Лучший дилер Analog 2021"
     },
     {
-      "image": "/images/cert-jvc-home.jpg",
+      "image": "images/cert-jvc-home.jpg",
       "title": "JVC Home Theater Award"
     },
     {
-      "image": "/images/cert-audioquest-2020.jpg",
+      "image": "images/cert-audioquest-2020.jpg",
       "title": "AudioQuest Peak Performance 2020"
     },
     {
-      "image": "/images/cert-audac-2020.jpg",
+      "image": "images/cert-audac-2020.jpg",
       "title": "Лучший дилер Audac 2020"
     },
     {
-      "image": "/images/cert-hifi-2019.jpg",
+      "image": "images/cert-hifi-2019.jpg",
       "title": "Hi-Fi & High End Show 2019"
     },
     {
-      "image": "/images/cert-jvc-mania-2020.jpg",
+      "image": "images/cert-jvc-mania-2020.jpg",
       "title": "JVC Mania Award 2020"
     },
     {
-      "image": "/images/cert-monitor-audio.jpg",
+      "image": "images/cert-monitor-audio.jpg",
       "title": "Monitor Audio Award"
     }
   ],
   "clients_title": "Нам доверяют",
   "clients_logos": [
     {
-      "image": "/images/client-sberbank.png",
+      "image": "images/client-sberbank.png",
       "name": "Сбербанк"
     },
     {
-      "image": "/images/client-gazprom.png",
+      "image": "images/client-gazprom.png",
       "name": "Газпром"
     },
     {
-      "image": "/images/client-honka.png",
+      "image": "images/client-honka.png",
       "name": "Honka"
     },
     {
-      "image": "/images/client-hilton.png",
+      "image": "images/client-hilton.png",
       "name": "Hilton"
     },
     {
-      "image": "/images/client-agalarov.png",
+      "image": "images/client-agalarov.png",
       "name": "Agalarov Estate"
     },
     {
-      "image": "/images/client-nordic.png",
+      "image": "images/client-nordic.png",
       "name": "Nordic SPA"
     },
     {
-      "image": "/images/client-millenium.png",
+      "image": "images/client-millenium.png",
       "name": "Millenium Park"
     },
     {
-      "image": "/images/client-tsentrvet.png",
+      "image": "images/client-tsentrvet.png",
       "name": "Центрсвет"
     }
   ],
   "gallery": [
     {
       "title": "Мультимедийные комнаты",
-      "image": "/images/multimedia-2.jpg",
+      "image": "images/multimedia-2.jpg",
       "images": [
-        "/images/multimedia.jpg",
-        "/images/multimedia-2.jpg",
-        "/images/multimedia-3.jpg"
+        "images/multimedia.jpg",
+        "images/multimedia-2.jpg",
+        "images/multimedia-3.jpg"
       ]
     },
     {
       "title": "Персональные кинозалы",
-      "image": "/images/home-theater-2.jpg",
+      "image": "images/home-theater-2.jpg",
       "images": [
-        "/images/home-theater.jpg",
-        "/images/home-theater-2.jpg",
-        "/images/home-theater-3.jpg"
+        "images/home-theater.jpg",
+        "images/home-theater-2.jpg",
+        "images/home-theater-3.jpg"
       ]
     },
     {
       "title": "Системы управления",
-      "image": "/images/control-2.jpg",
+      "image": "images/control-2.jpg",
       "images": [
-        "/images/control-systems.jpg",
-        "/images/control-2.jpg",
-        "/images/control-3.jpg",
-        "/images/control-4.jpg"
+        "images/control-systems.jpg",
+        "images/control-2.jpg",
+        "images/control-3.jpg",
+        "images/control-4.jpg"
       ]
     },
     {
       "title": "HoReCa и коммерческие проекты",
-      "image": "/images/horeca.jpg",
+      "image": "images/horeca.jpg",
       "images": [
-        "/images/horeca.jpg",
-        "/images/horeca-2.jpg",
-        "/images/horeca-3.jpg",
-        "/images/horeca-4.jpg"
+        "images/horeca.jpg",
+        "images/horeca-2.jpg",
+        "images/horeca-3.jpg",
+        "images/horeca-4.jpg"
       ]
     }
   ],
-  "team_photo": "/images/team.jpg",
+  "team_photo": "images/team.jpg",
   "team_members": [
     {
       "name": "Андрей Бледных",
